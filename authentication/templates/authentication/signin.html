@@ -1,0 +1,23 @@
+{% extends 'D:\College\Projects\hospital-management-system\home\templates\home\base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5 px-5">
+    {% if error %}
+        <div class="alert alert-danger" role="alert">{{error}}</div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label>Username:</label><br>
+        <input type="text" class="form-control" name="username" placeholder="Enter username">
+        <br>
+        <label>Password:</label><br>
+        <input type="password" class="form-control" name="password" placeholder="Enter password">
+        <br>
+        <a href="signup">You Don't have an account ?</a><br><br>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+
+
+{% endblock content %}

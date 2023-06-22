@@ -1,0 +1,68 @@
+{% extends 'D:\College\Projects\hospital-management-system\home\templates\home\base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="p-3">
+
+    <div class="row">
+
+        <div class="col d-flex flex-column align-items-center">
+            {% if user.gender == 'Female' %}
+                {% if user.is_patient %}
+                    <img class="rounded-circle" width="150px" src="{% static 'img/female_avatar.jpg' %}">
+                {% elif user.is_doctor %}
+                    <img class="rounded-circle" width="150px" src="{% static 'img/female_doctor_avatar.jpg' %}">
+                {% else %}
+                    <img class="rounded-circle" width="150px" src="{% static 'img/pharma_avatar.jpg' %}">
+                {% endif %}
+            {% else %}
+                {% if user.is_patient %}
+                    <img class="rounded-circle" width="150px" src="{% static 'img/male_avatar.jpg' %}">
+                {% elif user.is_doctor %}
+                    <img class="rounded-circle" width="150px" src="{% static 'img/male_doctor_avatar.jpg' %}">
+                {% else %}
+                    <img class="rounded-circle" width="150px" src="{% static 'img/pharma_avatar.jpg' %}">
+                {% endif %}
+
+            {% endif %}
+            {{ user.username }}<br>
+            {% if user.is_doctor %}
+                <a href="/appointmentbooking/dashboard/0"><button type="button" class="btn btn-primary btn-sm mt-3" onclick="">Dashboard</button></a>
+            {% elif user.is_pharma %}
+                <a href="/medkit/dashboard/0"><button type="button" class="btn btn-primary btn-sm mt-3" onclick="">Dashboard</button></a>
+            {% endif %}
+            <a href="/signin/signout"><button type="button" class="btn btn-primary btn-sm mt-3" onclick="">Logout</button></a>
+        </div>
+
+
+        <div class="col-md py-4">
+            First Name:
+            <input class="form-control" value="{{user.first_name}}" readonly style="width: 100%"><br>
+            Last Name:
+            <input class="form-control" value="{{user.last_name}}" readonly style="width: 100%"><br>
+            {% if user.is_doctor %}
+                Department:
+                <input class="form-control" value="{{Department}}" readonly style="width: 100%"><br>
+            {% endif %}
+            Phone number:
+            <input class="form-control" value="{{user.number}}" readonly style="width: 100%"><br>
+            E-mail:
+            <input class="form-control" value="{{user.email}}" readonly style="width: 100%"><br>
+            Gender:
+            <input class="form-control" value="{{user.gender}}" readonly style="width: 100%"><br>
+            Blood_group:
+            <input class="form-control" value="{{user.blood_group}}" readonly style="width: 100%"><br>
+        </div>
+
+
+        <div class="col">
+            {% if user.is_doctor %}
+                {% include 'authentication/appointment_today.html' %}
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

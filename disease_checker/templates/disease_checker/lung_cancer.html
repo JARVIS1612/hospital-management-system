@@ -1,0 +1,40 @@
+{% extends 'D:\College\Projects\hospital-management-system\home\templates\home\base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <form method="post" class="mx-auto" style="width: 500px" enctype="multipart/form-data">
+        {% if error %}
+        <div class="alert alert-danger" role="alert">{{error}}</div>
+        {% endif %}
+        {% if success %}
+        <div class="alert alert-success" role="alert">{{success}}</div>
+        {% endif %}
+        {% csrf_token %}
+
+        <label>Upload CT-scan image of your chest:<br>
+        </label>
+        <input type="file" name="img" class="form-control" accept=".jpeg, .png, .jpg" required>
+        <ul>
+            <li><small class="form-text text-muted">This application can identify some particular type of lung
+                cancer</small></li>
+        </ul>
+        <br>
+        <button type="submit" class="btn btn-primary mt-2">Upload</button>
+    </form>
+</div>
+
+{% if result %}
+    <div class="container my-5">
+        <center><div class="card max-auto" style="width: 25rem; height: auto">
+          <img src="{{img}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{result.0}}</h5>
+            <p class="card-text">{{result.1}}</p>
+            <a href="/appointmentbooking/" class="btn btn-primary">Book Appointment</a>
+          </div>
+        </div></center>
+    </div>
+{% endif %}
+
+{% endblock content %}

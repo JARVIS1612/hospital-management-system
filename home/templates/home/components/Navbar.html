@@ -1,0 +1,51 @@
+<nav class="nav">
+    {% load static %}
+    <img src="{% static 'img/Logo.png' %}" alt="logo"/>
+    <div class="menuicon">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div class="navbar1">
+        <ul class="navitem">
+            <li><a href="/">Home</a></li>
+            {% if user.is_authenticated %}
+
+                <li class="drop_down_link">
+                    <a href="/">Diseases Checker</a>
+                    <ul>
+                        <li><a href="/diseasechecker/lung_cancer">Lung Cancer</a></li>
+                        <li><a href="/diseasechecker/skin_disease">Skin Disease</a></li>
+                        <li><a href="/diseasechecker/diabetes">Diabetes</a></li>
+                    </ul>
+                </li>
+                <li><a href="/appointmentbooking">Book Appointment</a></li>
+                <li><a href="/medkit">Med Kit</a></li>
+                <li><a href="/signin/profile">Profile</a></li>
+            {% else %}
+                <li><a href="/signin">SignIn</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<div class="navbar2">
+    <ul class="navitem">
+        <li><a href="/">Home</a></li>
+        {% if user.is_authenticated %}
+                <li class="drop_down_link_">
+                    <a href="#">Diseases Checker</a>
+                    <ul class="drop_down_menu_">
+                        <li><a href="/diseasechecker/lung_cancer">Lung Cancer</a></li>
+                        <li><a href="/diseasechecker/skin_disease">Skin Disease</a></li>
+                        <li><a href="/diseasechecker/diabetes">Diabetes</a></li>
+                    </ul>
+                </li>
+                <li><a href="/appointmentbooking">Book Appointment</a></li>
+                <li><a href="/medkit">Med Kit</a></li>
+                <li><a href="/signin/profile">Profile</a></li>
+            {% else %}
+                <li><a href="/signin">SignIn</a></li>
+            {% endif %}
+    </ul>
+</div>

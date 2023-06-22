@@ -1,0 +1,48 @@
+{% extends 'D:\College\Projects\hospital-management-system\home\templates\home\base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container mt-5" xmlns="http://www.w3.org/1999/html">
+    <form method="post">
+        {% csrf_token %}
+        <label class="m-2">Ready Orders: <input type="checkbox" value="True" name="is_ready"></label>
+        <label class="m-2">Picked up Orders: <input type="checkbox" value="True" name="is_taken"></label>
+        <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+    </form>
+</div>
+<div class="container my-5">
+    {% if orders %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for br in orders %}
+        <div class="col">
+            <div class="card">
+                <img class="card-img-top" src="{{ br.prescription }}" alt="Card image cap" style="width: 75%; height: 75%">
+                <div class="card-body select_card_body_{{forloop.counter}}"
+                     onclick="display_form_card('{{forloop.counter}}')">
+                    <h5 class="card-title">{{ br.username }}</h5>
+                    {% if br.is_ready %}
+                        <p class="card-text">Status: Ready ({{br.uniquecode}})</p>
+                        <p class="card-text">Cost: {{br.cost}} &#8377</p>
+                    {% elif br.is_taken %}
+                        <p class="card-text">Status: Taken at ({{ br.taken_at }})</p>
+                        <p class="card-text">Cost: {{br.cost}} &#8377</p>
+                    {% else %}
+                        <p class="card-text">Status: Pending</p>
+                    {% endif %}
+                </div>
+                {% if not br.is_ready and not br.is_taken %}
+                <div class="card-body select_form_card_{{forloop.counter}}" style="display: none">
+                    {% include 'medkit/card_form.html' %}
+                </div>
+                {% elif br.is_ready and not br.is_taken %}
+                <a href="{{br.id}}/taken"><button type="submit" class="btn btn-primary w-25 m-3">Taken</button></a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock content %}

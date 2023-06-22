@@ -1,0 +1,17 @@
+{% load static %}
+<form method="post" action="{{br.id}}">
+    {% csrf_token %}
+    <select class="form-select" name="time" aria-label="Default select example" required>
+        <option selected value="">Select time slot</option>
+        {% for time in Time_slots %}
+        <option value="{{time.time_slot}}">{{time.time_slot}}</option>
+        {% endfor %}
+        <option value="N/A">N/A</option>
+    </select><br>
+
+    <textarea class="form-control" name="notes" placeholder="Enter Notes" rows="1"></textarea>
+    <br>
+    <button class="btn btn-primary">Approved</button>
+    <button class="btn btn-primary">Remove</button>
+    <img style="cursor: pointer" align="right" src="{% static 'img/backarrow.png' %}" class="logo" width="18" height="18" onclick="display_card_body('{{forloop.counter}}')">
+</form>

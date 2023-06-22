@@ -1,0 +1,21 @@
+{% extends 'D:\College\Projects\hospital-management-system\home\templates\home\base.html' %}
+
+{% block content %}
+{% load static %}
+{% static "img/" as IMG %}
+<div class="container mt-5" xmlns:>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for i in dict %}
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{{i.0}}"><h5 class="card-title">{{ i.0 }}</h5></a>
+                        <p class="card-text">{{i.1}}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

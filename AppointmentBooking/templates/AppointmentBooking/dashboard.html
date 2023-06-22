@@ -1,0 +1,53 @@
+{% extends 'D:\College\Projects\hospital-management-system\home\templates\home\base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container mt-5" xmlns="http://www.w3.org/1999/html">
+    <form method="post">
+        {% csrf_token %}
+        <label>Starting Date: <input type="date" name="start_date" class="form-control"></label>
+        <label class=" mx-2">Ending Date: <input type="date" name="end_date" class="form-control"></label>
+        <label class="m-2">Checked Patients: <input type="checkbox" value="True" name="is_checked"></label>
+        <label class="m-2">Approved Patients: <input type="checkbox" value="True" name="is_approved"></label>
+        <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+    </form>
+</div>
+<div class="container mt-5" xmlns:>
+    {% if BookingRequests %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for br in BookingRequests %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body select_card_body_{{forloop.counter}}"
+                     onclick="display_form_card('{{forloop.counter}}')">
+                    <h5 class="card-title">{{ br.username }}</h5><br>
+                    <h5 class="card-title">contact: {{ br.username.number }}  {{ br.username.email }}</h5><br>
+                    <p class="card-text">Date: {{ br.date }}</p>
+                    <p class="card-text">Time_slot: {{ br.time_slot.time_slot }}</p>
+                    <p class="card-text">Notes: {{ br.notes }}</p>
+                    {% if br.is_checked %}
+                        <p class="card-text">Status: Checked</p>
+                    {% elif br.is_approved %}
+                        <p class="card-text">Status: Not Checked ({{ br.unique_code }})</p>
+                    {% else %}
+                        <p class="card-text">Status: Request not Accepted</p>
+                    {% endif %}
+                </div>
+                {% if not br.is_checked and not br.is_approved %}
+                <div class="card-body select_form_card_{{forloop.counter}}" style="display: none">
+                    {% include 'AppointmentBooking/card_form.html' %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div style="opacity: 0.7">
+        <center><img src="{% static 'img/medical.png' %}" width="50%"></center>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock content %}

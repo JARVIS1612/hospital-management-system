@@ -1,0 +1,29 @@
+{% extends 'D:\College\Projects\hospital-management-system\home\templates\home\base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <form method="post" class="mx-auto" style="width: 500px" enctype="multipart/form-data">
+        {% if error %}
+        <div class="alert alert-danger" role="alert">{{error}}</div>
+        {% endif %}
+        {% if success %}
+        <div class="alert alert-success" role="alert">{{success}}</div>
+        {% endif %}
+        {% csrf_token %}
+
+        <label>Upload your prescription:<br>
+        </label>
+        <input type="file" name="img" class="form-control" accept=".jpeg, .png, .jpg" required>
+        <ul>
+            <li><small class="form-text text-muted">We will not accept any other prescription of any other hospital</small></li>
+            <li><small class="form-text text-muted">We will send email on your registered email address when order is ready</small></li>
+            <li><small class="form-text text-muted">Please Collect your order within 45 minutes</small></li>
+        </ul>
+        <br>
+        <button type="submit" class="btn btn-primary mt-2">Make Order</button>
+    </form>
+</div>
+
+
+{% endblock content %}

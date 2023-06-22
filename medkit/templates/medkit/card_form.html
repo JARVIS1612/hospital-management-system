@@ -1,0 +1,10 @@
+{% load static %}
+<form method="post" action="{{br.id}}">
+    {% csrf_token %}
+    <input type="text" name="cost" class="form-control" placeholder="Amount of bill" required><br>
+
+    <textarea class="form-control" name="notes" placeholder="Enter Notes" rows="1"></textarea>
+    <br>
+    <button class="btn btn-primary" type="submit">Order is ready</button>
+    <img style="cursor: pointer" align="right" src="{% static 'img/backarrow.png' %}" class="logo" width="18" height="18" onclick="display_card_body('{{forloop.counter}}')">
+</form>

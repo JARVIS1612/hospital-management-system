@@ -1,0 +1,18 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <div class="container alert alert-secondary mt-3" role="alert">Welcome Back {{ user.username }} !!</div>
+{% endif %}
+
+<!-- Carousel -->
+{% include 'home/components/Carousel.html' %}
+
+<!-- About -->
+{% include 'home/components/About.html' %}
+
+<!-- Facilities -->
+{% include 'home/components/Facilities.html' %}
+
+{% endblock content %}

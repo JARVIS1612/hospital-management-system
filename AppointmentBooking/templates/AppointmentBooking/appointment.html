@@ -1,0 +1,38 @@
+{% extends 'D:\College\Projects\hospital-management-system\home\templates\home\base.html' %}
+
+{% block content %}
+
+
+<div class="container mt-5 align-middle">
+    <form method="post" class="mx-auto" style="width: 500px">
+        {% if error %}
+        <div class="alert alert-danger" role="alert">{{error}}</div>
+        {% endif %}
+        {% if success %}
+        <div class="alert alert-success" role="alert">{{success}}</div>
+        {% endif %}
+        {% csrf_token %}
+
+        <label>Select Date:<br>
+        </label>
+        <input type="date" name="date" class="form-control" required>
+
+        <br>
+        <label>Select Timeslot:<br>
+        </label>
+        <select class="form-select" name="time" aria-label="Default select example" required>
+            {% for time in timeslots %}
+                <option>{{time.time_slot}}</option>
+            {% endfor %}
+        </select>
+
+        <br>
+        <label>Enter Remarks:
+        </label>
+        <textarea class="form-control" name="notes" ></textarea>
+
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock content %}

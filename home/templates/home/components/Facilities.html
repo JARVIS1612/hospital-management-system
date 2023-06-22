@@ -1,0 +1,19 @@
+<div class="container-xl mt-4 mb-5">
+    <div>
+        <h2>Facilities</h2>
+    </div>
+    <div class="grid-container">
+        {% for facility in Facilities %}
+        <div class="grid-item">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ facility.f }}</h5>
+                    <p class="card-text">
+                        {{ facility.fd }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
