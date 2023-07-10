@@ -45,3 +45,5 @@ Follow these steps to set up the Hospital Management System:
 Make sure to replace `virtual-environment-name` with your preferred virtual environment name.
 
 These instructions provide a comprehensive guide to setting up the Hospital Management System.
+
+[Click here](https://docs.google.com/document/d/1nYX5f3bx47DNJ_Y_P4M61nh3SZCBCDZ0/edit?usp=sharing&ouid=103072539572053507545&rtpof=true&sd=true) to know more
